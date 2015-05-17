@@ -43,7 +43,7 @@ def rename_and_upload_cover_pic(instance,filename):
 
 
 
-class User(models.Model):
+class Profile(models.Model):
     name = models.CharField(max_length=70, default = 'default_value')
     enrollment_no = models.IntegerField(default = 0)
     
@@ -59,27 +59,21 @@ class User(models.Model):
         return self.name+"_%s"%(self.enrollment_no,)
 
 def delete_profile_and_cover_pics(sender, **kwargs):
-    user = kwargs.get('instance')
+    profile = kwargs.get('instance')
     try:
-        os.remove(user.profile_pic.path)
-        os.remove(user.cover_pic.path)
+        os.remove(profile.profile_pic.path)
+        os.remove(profile.cover_pic.path)
     except:
         pass
-post_delete.connect(delete_profile_and_cover_pics, User)
+post_delete.connect(delete_profile_and_cover_pics, Profile)
 
 
 #################################################################################################
 
 class Email(models.Model):
-    user = models.ForeignKey(User)
+    profile = models.ForeignKey(Profile)
     email = models.EmailField(max_length = 254)
     def __unicode__(self):
         return self.email
 #################################################################################################
-
-class Password(models.Model):
-    user = models.ForeignKey(User)
-    password = models.CharField(max_length = 30, default = 'default_value')
-#################################################################################################
-
 
