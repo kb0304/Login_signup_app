@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.files.storage import FileSystemStorage
 from django.db.models.signals import post_delete
+from django.contrib.auth.models import User
 import os
 
 #################################################################################################
@@ -44,6 +45,7 @@ def rename_and_upload_cover_pic(instance,filename):
 
 
 class Profile(models.Model):
+    user = models.OneToOneField(User)
     name = models.CharField(max_length=70, default = 'default_value')
     enrollment_no = models.IntegerField(default = 0)
     
@@ -76,4 +78,3 @@ class Email(models.Model):
     def __unicode__(self):
         return self.email
 #################################################################################################
-
