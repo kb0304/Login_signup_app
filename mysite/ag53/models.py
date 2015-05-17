@@ -73,13 +73,13 @@ post_delete.connect(delete_profile_and_cover_pics, User)
 class Email(models.Model):
     user = models.ForeignKey(User)
     email = models.EmailField(max_length = 254)
-
+    def __unicode__(self):
+        return self.email
 #################################################################################################
 
 class Password(models.Model):
     user = models.ForeignKey(User)
     password = models.CharField(max_length = 30, default = 'default_value')
-
 #################################################################################################
 
 
