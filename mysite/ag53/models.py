@@ -28,18 +28,18 @@ class Age(models.Model):
 ################################################################################################
 
 def rename_and_upload_profile_pic(instance,filename):
-    path = 'ag53/images/profile_pic/'
+    path = 'ag53/media/images/profile_pic/'
     ext = filename.split('.')[-1]
     enrollment_no = instance.enrollment_no
-    filename = '{}'.format(enrollment_no,ext)
+    filename = '{}.{}'.format(enrollment_no,ext)
     return os.path.join(path, filename)
 
 
 def rename_and_upload_cover_pic(instance,filename):
-    path = 'ag53/images/cover_pic/'
+    path = 'ag53/media/images/cover_pic/'
     ext = filename.split('.')[-1]
     enrollment_no = instance.enrollment_no
-    filename = '{}'.format(enrollment_no,ext)
+    filename = '{}.{}'.format(enrollment_no,ext)
     return os.path.join(path, filename)
 
 
