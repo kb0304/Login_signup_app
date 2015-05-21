@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import login
 import os
 
+
+def ag53_home_view(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/ag53/profile')
+    else:
+        return HttpResponseRedirect('/ag53/login')
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 @login_required
 
@@ -17,3 +25,8 @@ def profile_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/ag53/')
+
+def change_password(request):
+    if POST:
+        p = request.POST['new_password']
+        request.user.set_password(p)
