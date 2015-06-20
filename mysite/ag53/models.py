@@ -71,10 +71,4 @@ post_delete.connect(delete_profile_and_cover_pics, Profile)
 
 
 #################################################################################################
-
-class Email(models.Model):
-    profile = models.ForeignKey(Profile)
-    email = models.EmailField(max_length = 254)
-    def __unicode__(self):
-        return self.email
-#################################################################################################
+################################################################################################

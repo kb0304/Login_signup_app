@@ -22,7 +22,7 @@ class UserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = ("username",)
+        fields = ("username","email")
 
     def clean_username(self):
         username = self.cleaned_data["username"]

@@ -55,19 +55,17 @@
           {{ user.profile.gender }}
         </td>
       </tr>
-      
-      {% for email in user.profile.email_set.all %}
-      <tr>
-        <td>
-           Email {{forloop.counter}}:
-        </td>
-        <td>
-          {{email}}
-        </td>
-      </tr>
-      {% endfor %}
 
       <tr>
+        <td>
+          Email:
+        </td>
+        <td>
+          {{user.email}}
+        </td>
+      </td>
+
+     <tr>
         <td>
           About:
         </td>
