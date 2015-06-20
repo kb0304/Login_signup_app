@@ -1,7 +1,9 @@
 from django.forms import ModelForm
+from django.forms.models import modelform_factory
 from django.contrib.auth.models import User
 from ag53.models import Profile
 from django import forms
+
 class UserForm(ModelForm):
     error_messages = {
         'duplicate_username': "A user with that username already exists.",
@@ -51,7 +53,6 @@ class UserForm(ModelForm):
         if commit:
             user.save()
         return user
-
 
 
 class ProfileForm(ModelForm):

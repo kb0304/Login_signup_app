@@ -1,11 +1,13 @@
-
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 {% csrf_token %}
-<div style="text-align:center;margin-top:200px;"><h1>AG53</h1></div>
+<div style="text-align:center;margin-top:200px;">
+    <h1>AG53</h1>
+</div>
+
+{% if form.errors %}
+<p style="text-align:center">Your username and password didn't match. Please try again.</p>
+{% endif %}
+
 
 <table style="text-align:center; margin:auto;">
 <tr>

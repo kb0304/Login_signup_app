@@ -1,6 +1,10 @@
 {% load staticfiles %}
-
-    <table border='1px'>
+<html>
+  <div style="padding-top:80px;text-align:center;">
+    <h1>AG53</h1>
+    <h2>Profile</h2>
+    <h3 style="color:red">{% block cpsuccess %}{% endblock %}</h3>
+    <table style="margin:auto;text-align:center;" border='1px'>
       <tr>
         <td>
           <img src="/static/{{pp}}" width = '110px' height='100px'/>
@@ -76,7 +80,7 @@
 
       <tr>
         <td colspan='2' style='text-align:center'>
-          <a href="/ag53/accounts/password_change">change password</a> 
+          <a href="/ag53/password_change">change password</a> 
         </td>
       </tr>
 
@@ -87,4 +91,6 @@
         </td>
       </tr>
 
-  </table>
+    </table>
+  </div>
+</html>

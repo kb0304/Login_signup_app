@@ -1,6 +1,16 @@
 <form method="POST" enctype = 'multipart/form-data' action="">
     {% csrf_token %}
-    {{userform}}
-    {{profileform}}
-    <input type="submit">
+    <style>
+        input,select{width:200px;}
+        table{margin:auto;}
+        table,tr,td,th{border:1px solid black;text-align:center;}
+    </style>
+    <table>
+    <caption><h1>AG53</h1><br><h2>Sign Up</h2></caption>
+    {{ userform.as_table }}
+    <br>
+    {{ profileform.as_table }}
+    <br>
+    <tr><th></th><td><br><input type="submit"></td></tr>
+    </table>
 </form>
