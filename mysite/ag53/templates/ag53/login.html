@@ -5,7 +5,9 @@
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
 {% csrf_token %}
-<table>
+<div style="text-align:center;margin-top:200px;"><h1>AG53</h1></div>
+
+<table style="text-align:center; margin:auto;">
 <tr>
     <td>{{ form.username.label_tag }}</td>
     <td>{{ form.username }}</td>
@@ -14,9 +16,16 @@
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
-</table>
 
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{% url 'profile'%}" />
+<tr>
+    <td colspan="2">
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{% url 'profile'%}" />
+    </td>
+</tr>
+<tr>
+    <td colspan="2" style="padding-top:20px;"><a href="/ag53/signup">Sign Up</a></td>
+<tr>
+</table>
 </form>
 

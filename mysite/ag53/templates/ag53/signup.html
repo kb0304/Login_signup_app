@@ -1,0 +1,6 @@
+<form method="POST" enctype = 'multipart/form-data' action="">
+    {% csrf_token %}
+    {{userform}}
+    {{profileform}}
+    <input type="submit">
+</form>
