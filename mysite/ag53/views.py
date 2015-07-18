@@ -39,6 +39,19 @@ def signup(request):
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 @login_required
 
+def edit_profile(request):
+    u = request.user
+    if request.method == 'POST':
+        profileform = ProfileForm(request.POST, request.FILES , prefix='profile')
+        if profileform.is_valid():
+            u.profile.delete()
+            profile = profileform.save(commit=False)
+            profile.user=u
+            profile.save()
+            return HttpResponseRedirect('/ag53/profile')
+    else:
+        profileform = ProfileForm(prefix='profile',initial={'name':u.profile.name,'enrollment_no':u.profile.enrollment_no,'about_me':u.profile.about_me,'age':u.profile.age,'branch':u.profile.branch,'gender':u.profile.gender,'profile_pic':u.profile.profile_pic})
+    return render_to_response('ag53/edit_profile.html',dict(profileform=profileform),context_instance=RequestContext(request))
 
 def cpsuccess(request):
     u = request.user

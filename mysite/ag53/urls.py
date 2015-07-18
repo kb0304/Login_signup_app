@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     url(r'^logout$', views.logout_view, name='logout_url'),
     url(r'^password_change/$', 'django.contrib.auth.views.password_change',{'post_change_redirect' : '/ag53/cpsuccess'},name="password_change"), 
     url(r'^cpsuccess$', views.cpsuccess,name='cpsuccess'),
-
+    url(r'^edit_profile/$',views.edit_profile,name='edit_profile'),
 
 )
