@@ -50,7 +50,8 @@ def edit_profile(request):
             profile.save()
             return HttpResponseRedirect('/ag53/profile')
     else:
-        profileform = ProfileForm(prefix='profile',initial={'name':u.profile.name,'enrollment_no':u.profile.enrollment_no,'about_me':u.profile.about_me,'age':u.profile.age,'branch':u.profile.branch,'gender':u.profile.gender,'profile_pic':u.profile.profile_pic})
+        profileform = ProfileForm(prefix='profile',initial={'name':u.profile.name,'enrollment_no':u.profile.enrollment_no,
+                'about_me':u.profile.about_me,'age':u.profile.age,'branch':u.profile.branch,'gender':u.profile.gender})
     return render_to_response('ag53/edit_profile.html',dict(profileform=profileform),context_instance=RequestContext(request))
 
 def cpsuccess(request):
