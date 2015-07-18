@@ -69,8 +69,3 @@ def profile_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/ag53')
-
-def change_password(request):
-    if POST:
-        p = request.POST['new_password']
-        request.user.set_password(p)

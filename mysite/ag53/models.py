@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.files.storage import FileSystemStorage
 from django.db.models.signals import post_delete
 from django.contrib.auth.models import User
@@ -22,7 +21,6 @@ class Branch(models.Model):
 
 class Age(models.Model):
     age = models.IntegerField(default=1)
-    #MaxValueValidator(150),MinValueValidator(0))
     def __unicode__(self):
         return "%s"%(self.age,)
 ################################################################################################
@@ -47,10 +45,7 @@ def rename_and_upload_cover_pic(instance,filename):
 class Profile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=70, default = 'default_value')
-    enrollment_no = models.IntegerField(default = 0)
-    
-    #MaxValueValidator(99999999),MinValueValidator(9999999))
-    
+    enrollment_no = models.IntegerField(default = 0) 
     about_me = models.CharField(max_length=5000, default = 'default_value')
     profile_pic = models.ImageField(upload_to = rename_and_upload_profile_pic)
     cover_pic = models.ImageField(upload_to = rename_and_upload_cover_pic)
