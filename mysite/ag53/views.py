@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login
 from ag53.forms import UserForm
-from ag53.forms import ProfileForm
+from ag53.forms import ProfileForm, EditProfileForm
 from django.template import RequestContext
 import os
 
@@ -41,18 +41,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 def edit_profile(request):
     u = request.user
+    p = u.profile
     if request.method == 'POST':
-        profileform = ProfileForm(request.POST, request.FILES , prefix='profile')
-        if profileform.is_valid():
-            u.profile.delete()
-            profile = profileform.save(commit=False)
+        editprofileform = EditProfileForm(request.POST, request.FILES , prefix='profile',instance = p)
+        if editprofileform.is_valid():
+            profile = editprofileform.save(commit=False)
             profile.user=u
             profile.save()
             return HttpResponseRedirect('/ag53/profile')
     else:
-        profileform = ProfileForm(prefix='profile',initial={'name':u.profile.name,'enrollment_no':u.profile.enrollment_no,
+        editprofileform = EditProfileForm(prefix='profile',initial={'profile_pic':u.profile.profile_pic,'cover_pic':u.profile.cover_pic,'name':u.profile.name,'enrollment_no':u.profile.enrollment_no,
                 'about_me':u.profile.about_me,'age':u.profile.age,'branch':u.profile.branch,'gender':u.profile.gender})
-    return render_to_response('ag53/edit_profile.html',dict(profileform=profileform),context_instance=RequestContext(request))
+    return render_to_response('ag53/edit_profile.html',dict(profileform=editprofileform),context_instance=RequestContext(request))
 
 def cpsuccess(request):
     u = request.user

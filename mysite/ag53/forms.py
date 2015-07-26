@@ -59,3 +59,20 @@ class ProfileForm(ModelForm):
     class Meta:
         model=Profile
         exclude = ['user']
+
+class EditProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user']
+
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+        instance = getattr(self, 'instance', None)
+        if instance:
+            self.fields['enrollment_no'].widget.attrs['readonly'] = True
+    def clean_enrollment_no(self):
+        instance = getattr(self, 'instance', None)
+        if instance:
+            return instance.enrollment_no
+        else:
+            return self.cleaned_data['enrollment_no']
